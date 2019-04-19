@@ -1,0 +1,7 @@
+typealias HasAllDependencies = {% for type in types.protocols where type|annotated:"AutoDependency" or type.based.AutoDependency %}Has{{ type.name|replace:"Type","" }} & {% endfor %}NoDependencies
+
+{% for type in types.protocols where type|annotated:"AutoDependency" or type.based.AutoDependency %}
+protocol Has{{ type.name|replace:"Type","" }} {
+	var {{ type.name|lowerFirstLetter|replace:"Type",""  }}: {{ type.name }} { get } 
+}
+{% endfor %}
