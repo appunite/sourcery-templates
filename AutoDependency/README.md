@@ -1,20 +1,19 @@
-# Usage
-
-## How to
-This template is used to generate set of protocols which have single variable declaring containment of given dependency. Then we can create single depednency container, which conforms to all of those protocols, and inject whole container to our logic units. Those logic units will declare their dependency as single typelias:
+## Use case
+This template is used to generate set of protocols which have single variable declaring containment of given dependency. Then we can create single depednency container, which conforms to all of those protocols, and inject whole container to our logic units. Those logic units will declare their dependency as single typelias which can be extended whenever another dependency is needed:
 
 ```swift
 class LogicUnit {
-	typealias Dependencies = HasWebService
+	typealias Dependencies = HasWebService & HasKeychain
 	
 	init(dependencies: Dependencies) {
 		self.dependencies = dependencies
 	}
 }
 ```
-So whenever we need another dependency in this unit, we just extend this typealias by another `Has...`.
 
-Example of targeted type:
+## Example
+
+- Targeted type:
 
 ```swift
 // sourcery: AutoDependency
@@ -28,7 +27,7 @@ public protocol Keychain {
 }
 ```
 
-Running sourcery will generate this code:
+- Generated output:
 
 ```swift
 typealias HasAllDependencies = HasKeychain & HasWebService & NoDependencies
@@ -42,7 +41,7 @@ protocol HasWebService {
 }
 ```
 
-Example of dependencies container:
+- Dependencies container could be defined like thos:
 
 ```swift
 struct DependenciesContainer: HasAllDependencies {
