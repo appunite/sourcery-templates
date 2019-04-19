@@ -7,3 +7,4 @@ The purpose of this repository is to provide a place where we can share Sourcery
 - [AutoDependency](https://git.appunite.com/damian.kolasinski/sourcery-templates/tree/master/AutoDependency)
 - [AutoModelMockable](https://git.appunite.com/damian.kolasinski/sourcery-templates/tree/master/AutoModelMockable)
 - [AutoInterface](https://git.appunite.com/damian.kolasinski/sourcery-templates/tree/master/AutoInterface)
+- [AutoInit](https://git.appunite.com/damian.kolasinski/sourcery-templates/tree/master/AutoInit)
