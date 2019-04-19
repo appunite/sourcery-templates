@@ -1,4 +1,4 @@
-## Use case
+## Description
 This template is used to generate mocks for interfaces that you usually inject to objects that you wish to unit test. For each method and variable within interface, it will create set of variables with which you can control returned value, test how many times given method was called or verify if passed arguments were correct.
 
 ## Example

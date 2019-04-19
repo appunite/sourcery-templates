@@ -1,4 +1,4 @@
-## Use case
+## Description
 This template is used to generate set of protocols which have single variable declaring containment of given dependency. Then we can create single depednency container, which conforms to all of those protocols, and inject whole container to our logic units. Those logic units will declare their dependency as single typelias which can be extended whenever another dependency is needed:
 
 ```swift

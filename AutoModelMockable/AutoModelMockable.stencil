@@ -1,0 +1,30 @@
+{% macro defaultizeEnum enum %}{% if enum.cases.first.hasAssociatedValue %}{% map enum.cases.first.associatedValues into values using associatedValue %}{{ associatedValue.localName }}: {% call defaultize associatedValue %}{% endmap %}.{{ enum.cases.first.name }}({{ values|join:", " }}){% else %}.{{ enum.cases.first.name }}{% endif %}{% endmacro %}
+{% macro defaultize variable %}{% if variable.isOptional %}nil{% elif variable.isArray %}[]{% elif variable.isDictionary %}[:]{% elif variable.type.kind == "enum" %}{% call defaultizeEnum variable.type %}{% else %}.mock(){% endif %}{% endmacro %}
+
+{% for type in types.all where type|annotated:"AutoModelMockable" or type.based.AutoModelMockable %}
+extension {{ type.name }} {
+	{% map type.storedVariables into arguments using argument %}{{ argument.name }}: {% if argument.type.name == "Source" %}SyncPlayModels.{% endif %}{{ argument.typeName }} = {% if argument.annotations.defaultMock %}{{ argument.annotations.defaultMock }}{% else %}{% call defaultize argument %}{% endif %}{% endmap %}
+	{% map type.storedVariables into properties using property %}{{ property.name }}: {{ property.name }}{% endmap %}
+	static func mock({{ arguments|join:", " }}) -> {{ type.name }} {
+		return {{ type.name }}({{ properties|join:", " }})
+	}
+}
+{% endfor %}
+
+private extension Bool {
+    static func mock() -> Bool {
+        return false
+    }
+}
+
+private extension StringProtocol {
+    static func mock() -> Self {
+        return "Default text"
+    }
+}
+
+private extension ExpressibleByIntegerLiteral {
+    static func mock() -> Self {
+        return 7
+    }
+}
