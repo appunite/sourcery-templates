@@ -7,11 +7,11 @@ This template is used to generate static methods returning instances of structur
 ```swift
 // sourcery: AutoModelMockable
 public struct User: Codable {
-	public let id: String
-	public let username: String
-  	public let emailAddress: String?
-  	public let firstName: String?
-  	public let lastName: String?
+    public let id: String
+    public let username: String
+    public let emailAddress: String?
+    public let firstName: String?
+    public let lastName: String?
 }
 
 ```
@@ -20,9 +20,9 @@ public struct User: Codable {
 
 ```swift
 extension User {
-	static func mock(id: String = .mock(), username: String = .mock(), emailAddress: String? = nil, firstName: String? = nil, lastName: String? = nil) -> User {
-		return User(id: id, username: username, emailAddress: emailAddress, firstName: firstName, lastName: lastName)
-	}
+    static func mock(id: String = .mock(), username: String = .mock(), emailAddress: String? = nil, firstName: String? = nil, lastName: String? = nil) -> User {
+        return User(id: id, username: username, emailAddress: emailAddress, firstName: firstName, lastName: lastName)
+    }
 }
 
 private extension Bool {
@@ -63,9 +63,9 @@ private extension ExpressibleByIntegerLiteral {
 	Generated method will then look like this: 
 	
 	```swift
-		static func mock(id: String = .mock(), username: String = "MyUsername") -> User {
-			return User(id: id, username: username, emailAddress: emailAddress, firstName: firstName, lastName: lastName)
-		}
+    static func mock(id: String = .mock(), username: String = "MyUsername") -> User {
+        return User(id: id, username: username, emailAddress: emailAddress, firstName: firstName, lastName: lastName)
+    }
 	
 	```
 	

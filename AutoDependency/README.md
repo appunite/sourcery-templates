@@ -3,11 +3,11 @@ This template is used to generate set of protocols which have single variable de
 
 ```swift
 class LogicUnit {
-	typealias Dependencies = HasWebService & HasKeychain
+    typealias Dependencies = HasWebService & HasKeychain
 	
-	init(dependencies: Dependencies) {
-		self.dependencies = dependencies
-	}
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
 }
 ```
 
@@ -33,11 +33,11 @@ public protocol Keychain {
 typealias HasAllDependencies = HasKeychain & HasWebService & NoDependencies
 
 protocol HasKeychain {
-	var keychain: Keychain { get }
+    var keychain: Keychain { get }
 }
 
 protocol HasWebService {
-	var webService: WebService { get } 
+    var webService: WebService { get } 
 }
 ```
 
@@ -45,8 +45,8 @@ protocol HasWebService {
 
 ```swift
 struct DependenciesContainer: HasAllDependencies {
-	let webService: WebService = WebServiceImp()
-	let keychain: Keychain = KechainImp()
+    let webService: WebService = WebServiceImp()
+    let keychain: Keychain = KechainImp()
 }
 ```
 
