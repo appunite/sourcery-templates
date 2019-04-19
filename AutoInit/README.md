@@ -30,7 +30,7 @@ public struct SuccessMessage: AutoInit {
 ## Reference
 
 1. **Supported types**: structs, classes
-2. **Output type**: inline
+2. **Output type**: auto inline
 3. **Available annotations**: -
 
 ## Source 
