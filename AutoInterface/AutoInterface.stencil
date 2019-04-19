@@ -1,0 +1,20 @@
+{% for type in types.all where type|annotated:"AutoInterface" or type.based.AutoInterface %}
+{% set interfaceName %}{{ type.name|replace:"Imp","" }}{% if not type.name|contains:"Imp" %}Type{% endif %}{% endset %}
+// sourcery:file:{{ type.__path|replace:".swift",""|replace:type.name,interfaceName }}.filegenerated.swift
+// sourcery: AutoMockable{% if not type|annotated: "NoAutoDependency" %}, AutoDependency{% endif %}
+{% if not type.accessLevel == "internal" %}{{ type.accessLevel }} {% endif %}protocol {{ interfaceName }} {
+    {% for init in type.initializers where init|annotated:"interfaceinit" %}
+    {{ init.name }}
+    {% endfor %}
+    {% for var in type.variables where var.readAccess == type.accessLevel %}
+    var {{ var.name }}: {{ var.actualTypeName }} { get{% if var.writeAccess == type.accessLevel %} set{% endif %} }
+    {% endfor %}
+    {% for method in type.methods where method.accessLevel == type.accessLevel and not method.isInitializer %}
+    func {{ method.name }}{% if not method.returnTypeName.name == "Void" %} -> {{ method.actualReturnTypeName }}{% endif %}
+    {% endfor %}
+}
+extension {{ type.name }}: {{ interfaceName }} {}
+
+// bash:imports {{ type.__path }}
+// sourcery:end
+{% endfor %}
