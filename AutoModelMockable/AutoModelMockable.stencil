@@ -3,7 +3,7 @@
 
 {% for type in types.all where type|annotated:"AutoModelMockable" or type.based.AutoModelMockable %}
 extension {{ type.name }} {
-	{% map type.storedVariables into arguments using argument %}{{ argument.name }}: {% if argument.type.name == "Source" %}SyncPlayModels.{% endif %}{{ argument.typeName }} = {% if argument.annotations.defaultMock %}{{ argument.annotations.defaultMock }}{% else %}{% call defaultize argument %}{% endif %}{% endmap %}
+	{% map type.storedVariables into arguments using argument %}{{ argument.name }}: {{ argument.typeName }} = {% if argument.annotations.defaultMock %}{{ argument.annotations.defaultMock }}{% else %}{% call defaultize argument %}{% endif %}{% endmap %}
 	{% map type.storedVariables into properties using property %}{{ property.name }}: {{ property.name }}{% endmap %}
 	static func mock({{ arguments|join:", " }}) -> {{ type.name }} {
 		return {{ type.name }}({{ properties|join:", " }})
