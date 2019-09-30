@@ -6,7 +6,7 @@ This template is used to generate static methods returning instances of structur
 
 ```swift
 // sourcery: AutoModelMockable
-public struct User: Codable {
+public struct User {
     public let id: String
     public let username: String
     public let emailAddress: String?
@@ -50,8 +50,8 @@ private extension ExpressibleByIntegerLiteral {
 1. **Supported types**: structs, classes
 2. **Output type**: single file
 3. **Available annotations**:
-	- defaultMock - use this annotation if you wish to control the generated default init argument for given property: 
-	
+	- defaultMock - use this annotation if you wish to control the generated default init argument for given property:
+
 	```swift
 	// sourcery: AutoModelMockable
 	public struct User: Codable {
@@ -60,16 +60,11 @@ private extension ExpressibleByIntegerLiteral {
 		public let username: String
 	}
 	```
-	Generated method will then look like this: 
-	
+	Generated method will then look like this:
+
 	```swift
     static func mock(id: String = .mock(), username: String = "MyUsername") -> User {
         return User(id: id, username: username, emailAddress: emailAddress, firstName: firstName, lastName: lastName)
     }
-	
-	```
-	
-	
 
-## Source 
-_
+	```

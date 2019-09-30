@@ -7,7 +7,7 @@ This template is used to generate mocks for interfaces that you usually inject t
 ```swift
 // sourcery: AutoMockable
 protocol WebService {
-    func getUser(withId id: Int) -> Result<User>
+    func getUser(withId id: Int) -> Result<User, WebServiceError>
 }
 
 ```
@@ -41,5 +41,5 @@ class WebServiceMock: WebService {
 2. **Output type**: single file
 3. **Available annotations**: -
 
-## Source 
+## Source
 [https://github.com/krzysztofzablocki/Sourcery/blob/master/Templates/Templates/AutoMockable.stencil](https://github.com/krzysztofzablocki/Sourcery/blob/master/Templates/Templates/AutoMockable.stencil)
