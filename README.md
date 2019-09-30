@@ -1,6 +1,6 @@
 # Sourcery templates
 
-The purpose of this repository is to provide a place where we can share Sourcery templates and come back to whenever we need one, rather than look through projects we had been working on previously.
+The purpose of this repository is to share the templates that we are using in our company.
 
 ## Available templates
 - [AutoMockable](https://git.appunite.com/damian.kolasinski/sourcery-templates/tree/master/AutoMockable)
