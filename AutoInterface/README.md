@@ -63,18 +63,11 @@ public struct WebServiceImp {
     }
 	```
 
-	Generated interface will then look like this: 
-	
+	Generated interface will then look like this:
+
 	```swift
-    // sourcery: AutoMockable, AutoDependency
+    // sourcery: AutoMockable
     public protocol WebService {
         init(keychain: Keychain)
     }
 	```
-	
-	- NoAutoDependency - use this annotation on type if you wish to make generated interface not be annotated with AutoDependency. If you are not using AutoDependency at all, you will want to remove it from template completely.
-	
-	
-
-## Source 
-_

@@ -1,6 +1,6 @@
 {% for type in types.all where type|annotated:"AutoInterface" or type.based.AutoInterface %}
 {% set interfaceName %}{{ type.name|replace:"Imp","" }}{% if not type.name|contains:"Imp" %}Type{% endif %}{% endset %}
-{% set inheritedTemplates %}: AutoMockable{% if not type|annotated: "NoAutoDependency" %}, AutoDependency{% endif %}{% endset %}
+{% set inheritedTemplates %}: AutoMockable{% endset %}
 
 // sourcery:inline:{{ type.name }}.AutoInterface
 {% if type|annotated:"AutoInterface" %}// sourcery{{ inheritedTemplates }}{% endif %}
@@ -17,4 +17,3 @@
 }
 // sourcery:end
 {% endfor %}
-

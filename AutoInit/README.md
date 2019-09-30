@@ -5,7 +5,8 @@ This template is used to generate init with the same access level as the targete
 - Targeted type:
 
 ```swift
-public struct SuccessMessage: AutoInit {
+// sourcery: AutoInit
+public struct SuccessMessage {
     public let title: String
     public let subtitle: String
 }
@@ -14,12 +15,13 @@ public struct SuccessMessage: AutoInit {
 - Generated output:
 
 ```swift
-public struct SuccessMessage: AutoInit {
+// sourcery: AutoInit
+public struct SuccessMessage {
     public let title: String
     public let subtitle: String
 
 // sourcery:inline:auto:SuccessMessage.AutoInit
-    public init(title: String, subtitle: String) { // swiftlint:disable:this line_length
+    public init(title: String, subtitle: String) {
         self.title = title
         self.subtitle = subtitle
     }
@@ -33,5 +35,5 @@ public struct SuccessMessage: AutoInit {
 2. **Output type**: auto inline
 3. **Available annotations**: -
 
-## Source 
+## Source
 [https://gist.github.com/Liquidsoul/efa4f65af055acfde64afed6cda0007d](https://gist.github.com/Liquidsoul/efa4f65af055acfde64afed6cda0007d)

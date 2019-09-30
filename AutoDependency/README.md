@@ -4,7 +4,7 @@ This template is used to generate set of protocols which have single variable de
 ```swift
 class LogicUnit {
     typealias Dependencies = HasWebService & HasKeychain
-	
+
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
@@ -18,7 +18,7 @@ class LogicUnit {
 ```swift
 // sourcery: AutoDependency
 protocol WebService {
-    func getUser(withId id: Int) -> Result<User>
+    func getUser(withId id: Int) -> Result<User, WebServiceError>
 }
 
 // sourcery: AutoDependency
@@ -37,11 +37,11 @@ protocol HasKeychain {
 }
 
 protocol HasWebService {
-    var webService: WebService { get } 
+    var webService: WebService { get }
 }
 ```
 
-- Dependencies container could be defined like thos:
+- Dependencies container could be defined like this:
 
 ```swift
 struct DependenciesContainer: HasAllDependencies {
@@ -55,6 +55,3 @@ struct DependenciesContainer: HasAllDependencies {
 1. **Supported types**: protocols
 2. **Output type**: single file
 3. **Available annotations**: -
-
-## Source 
-_
